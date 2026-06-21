@@ -10,9 +10,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                dir('app') {
-                    sh 'npm ci'
-                }
+                sh 'docker run --rm -v "$PWD/app:/app" -w /app node:22-alpine npm ci'
             }
         }
 
