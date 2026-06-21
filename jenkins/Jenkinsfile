@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('app') {
+                    sh 'npm ci'
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t devops-cicd-platform:1.0 -f docker/Dockerfile .'
+            }
+        }
+    }
+}
