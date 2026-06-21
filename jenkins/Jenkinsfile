@@ -10,7 +10,13 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'docker run --rm -v "$PWD/app:/app" -w /app node:22-alpine npm ci'
+                sh '''
+                docker run --rm \
+                  -v /home/jay/jenkins_home/workspace/devops-cicd-platform/app:/app \
+                  -w /app \
+                  node:22-alpine \
+                  sh -c "ls -la && npm ci"
+                '''
             }
         }
 
