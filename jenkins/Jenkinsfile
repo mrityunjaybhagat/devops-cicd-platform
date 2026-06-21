@@ -25,5 +25,32 @@ pipeline {
                 sh 'docker build -t devops-cicd-platform:1.0 -f docker/Dockerfile .'
             }
         }
+        
+        stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-credentials',
+                    usernameVariable: 'DOCKERHUB_USER',
+                    passwordVariable: 'DOCKERHUB_PASS'
+                )]) {
+                    sh 'echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin'
+                }
+            }
+        }
+        stage('Docker Tag') {
+            steps {
+                sh 'docker tag devops-cicd-platform:1.0 mrityunjaybhagat/devops-cicd-platform:1.0'
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                sh 'docker push mrityunjaybhagat/devops-cicd-platform:1.0'
+            }
+        }
+
+
+        
+        
+        
     }
 }
