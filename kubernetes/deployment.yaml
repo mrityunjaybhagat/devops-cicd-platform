@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: devops-cicd-platform
-          image: mrityunjaybhagat/devops-cicd-platform:1.0
+          image: mrityunjaybhagat/devops-cicd-platform:1.1
           ports:
             - containerPort: 3000
           readinessProbe:
