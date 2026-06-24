@@ -201,3 +201,19 @@ Linux • Docker • Jenkins • Kubernetes • AWS • Terraform
 * Root cause analysis showed the credential scope was not accessible to pipeline execution.
 * Resolved by creating the credential in the Global Credentials store and referencing it through Jenkins `credentialsId`.
 
+### 7.Kubernetes Context Misconfiguration
+
+* Kubernetes manifests appeared to fail validation even though the YAML syntax was correct.
+* Investigation revealed that `kubectl` was configured to use a stale Kind cluster context that no longer existed.
+* Distinguished between manifest validation issues and cluster connectivity issues.
+* Resolved by cleaning up obsolete Kubernetes contexts and creating a fresh cluster.
+
+### 8.Kubernetes Health Probe Failure
+
+* Application pods repeatedly restarted with `CrashLoopBackOff`.
+* Investigation of Kubernetes events revealed liveness and readiness probes were receiving HTTP 404 responses.
+* Root cause was a missing `/health` endpoint in the application.
+* Implemented a dedicated health check endpoint and redeployed the application.
+* Verified successful health checks and stable pod operation.
+
+
