@@ -2,14 +2,15 @@ services:
   jenkins:
     image: jenkins/jenkins:lts-jdk17
     container_name: jenkins
+    network_mode: "host"
     user: root
-    ports:
-      - "8080:8080"
-      - "50000:50000"
     volumes:
       - /home/jay/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
+      - /usr/bin/helm:/usr/bin/helm
+      - /usr/local/bin/kubectl:/usr/local/bin/kubectl
+      - /home/jay/.kube:/root/.kube
     restart: unless-stopped
 volumes:
   jenkins_home:
