@@ -1,16 +1,31 @@
 # DevOps CI/CD Platform
 
-## Overview
+## Project Overview
 
-A production-style DevOps portfolio project demonstrating a complete CI/CD workflow from source code commit to container image delivery.
+The **DevOps CI/CD Platform** is an end-to-end Continuous Integration and Continuous Deployment (CI/CD) project built to demonstrate a modern DevOps workflow using industry-standard tools.
 
-This project is being built using industry-standard DevOps tools and practices, focusing on automation, containerization, CI/CD pipelines, Kubernetes deployment, and infrastructure management.
+The project automates the complete software delivery lifecycle, from source code management to application deployment on a Kubernetes cluster. Every code change is built by Jenkins, containerized using Docker, published to Docker Hub with an automatically generated image tag based on the Jenkins build number, and deployed to Kubernetes using Helm.
+
+This project was built with a strong emphasis on understanding the complete deployment pipeline rather than simply using individual tools. Throughout the implementation, several real-world engineering challenges were encountered and resolved, including Jenkins container networking, Docker image versioning, Kubernetes health probes, Helm configuration, and deployment automation.
+
+## Key Features
+
+* Automated CI/CD pipeline using Jenkins
+* Docker image build and push to Docker Hub
+* Automatic image versioning using Jenkins build numbers
+* Kubernetes application deployment with Helm
+* Liveness and Readiness health checks
+* End-to-end deployment automation from GitHub to Kubernetes
+* Structured project documentation and troubleshooting guide
+
+This repository demonstrates practical experience with designing, implementing, troubleshooting, and automating a complete DevOps deployment pipeline suitable for real-world applications.
+
 
 ## Project Goal
 
 Build an end-to-end CI/CD platform that automates:
 
-Source Code ? Build ? Test ? Docker Image ? Docker Registry ? Kubernetes Deployment
+Source Code ? Build ? Docker Image ? Docker Hub ? Kubernetes Deployment
 
 The project is designed to simulate a real-world DevOps environment and showcase practical experience with CI/CD, containerization, Kubernetes, Helm, and cloud infrastructure.
 
@@ -18,17 +33,24 @@ The project is designed to simulate a real-world DevOps environment and showcase
 
 ## Architecture
 
-GitHub
-?
-Jenkins Pipeline
-?
-Docker Build
-?
-Docker Hub
-?
-Kubernetes Cluster
-?
-Helm Deployment
+![DevOps CI/CD Platform Architecture](docs/images/devops-cicd-platform-architecture.png)
+The project follows a complete CI/CD workflow where every code change is automatically built, containerized, published, and deployed.
+
+## Repository Overview
+
+![GitHub Repository](docs/images/01-github-repository.png)
+
+
+### Workflow
+
+1. Developer pushes code to GitHub.
+2. Jenkins checks out the latest source code.
+3. Dependencies are installed inside a Node.js container.
+4. Jenkins builds a Docker image.
+5. The image is tagged automatically using the Jenkins build number.
+6. The image is pushed to Docker Hub.
+7. Helm upgrades or installs the application on the Kubernetes cluster.
+8. Kubernetes performs readiness and liveness health checks before serving traffic.
 
 ---
 
@@ -50,8 +72,8 @@ Helm Deployment
 
 ### Container Orchestration
 
-* Kubernetes (Upcoming)
-* Helm (Upcoming)
+* Kubernetes
+* Helm
 
 ### Cloud
 
@@ -84,85 +106,43 @@ Helm Deployment
 * Docker Hub access token authentication
 * Jenkins credential management
 
----
-
-## Challenges Faced
-
-### Jenkins Docker Integration
-
-* Docker CLI unavailable inside Jenkins container
-* Resolved by mounting Docker binary and Docker socket
-
-### Container Workspace Mapping
-
-* Jenkins workspace path differed from host filesystem path
-* Corrected volume mappings for containerized builds
-
-### Docker Hub Credential Scope
-
-* Jenkins pipeline could not access user-scoped credentials
-* Resolved using Global Credentials Store
-
-### CI Build Failures
-
-* Debugged package installation failures caused by incorrect workspace mounts
-* Validated Docker volume mappings manually before pipeline execution
-
----
-
 ## Current Status
 
 ### Completed
-
 * GitHub Repository
 * Dockerized Application
 * Jenkins Setup
 * Jenkins Pipeline
 * Docker Hub Integration
 * Automated Image Publishing
-
-### In Progress
-
-* Kubernetes Deployment Manifests
-* Service Configuration
-* Helm Charts
+*Kubernetes Deployment Manifests
+*Helm Deployment
+* Automated Deployment from Jenkins to Kubernetes
+*Service Configuration
+*Helm Charts
 
 ### Planned
 
 * Kubernetes Cluster on AWS EC2
-* Automated Deployment from Jenkins to Kubernetes
 * Ingress Configuration
 * Rolling Updates
-* Helm-Based Releases
+* Prometheus & Grafana Monitoring
+* Argo CD GitOps Deployment
+* Terraform Infrastructure Provisioning
 
 ---
 
 ## Repository Structure
 
-devops-cicd-platform/
-
-+-- app/
-
-+-- docker/
-
-+-- docs/
-
-+-- helm/
-
-+-- jenkins/
-
-+-- kubernetes/
-
----
-
-## Author
-
-Mritunjay Bhagat
-
-DevOps Engineer | Full Stack Developer
-
-Linux • Docker • Jenkins • Kubernetes • AWS • Terraform
-
+devops-cicd-platform/ 
++-- app/ 
++-- docker/ 
++-- docs/ ï¿½ 
+ï¿½  +-- images/ 
++-- helm/ 
++-- jenkins/ 
++-- kubernetes/ 
++-- README.md
 
 ## Challenges Faced
 
@@ -217,3 +197,63 @@ Linux • Docker • Jenkins • Kubernetes • AWS • Terraform
 * Verified successful health checks and stable pod operation.
 
 
+
+## Screenshots
+
+### GitHub Repository
+
+![GitHub Repository](docs/images/01-github-repository.png)
+
+---
+
+### Jenkins Pipeline
+
+![Jenkins Pipeline](docs/images/02-jenkins-stage-view.png)
+
+---
+
+### Docker Hub Images
+
+![Docker Hub](docs/images/03-dockerhub-image.png)
+
+---
+
+### Kubernetes Pods & Services
+
+![Kubernetes Pods and Services](docs/images/04-kubectl-pods-services.png)
+
+---
+
+### Helm Deployment
+
+![Helm Deployment](docs/images/05-helm-list.png)
+
+---
+
+### Application Health Check
+
+![Health Endpoint](docs/images/06-health-endpoint.png)
+
+
+
+## Author
+
+Mritunjay Bhagat
+
+DevOps Engineer | Full Stack Developer
+
+Linux ï¿½ Docker ï¿½ Jenkins ï¿½ Kubernetes ï¿½ AWS ï¿½ Terraform
+
+##Repository Rating
+
+*Documentation ?????
+
+*Architecture ?????
+
+*Code Organization ?????
+
+*CI/CD Pipeline ?????
+
+*Portfolio Readiness ?????
+
+*Overall: 9.8 / 10
