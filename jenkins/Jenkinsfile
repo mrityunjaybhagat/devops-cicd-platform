@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+      IMAGE_TAG = "${env.BUILD_NUMBER}"
+  }
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +24,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t devops-cicd-platform:1.1 -f docker/Dockerfile .'
+                sh 'docker build -t devops-cicd-platform:${IMAGE_TAG} -f docker/Dockerfile .'
             }
         }
         
@@ -39,16 +41,23 @@ pipeline {
         }
         stage('Docker Tag') {
             steps {
-                sh 'docker tag devops-cicd-platform:1.1 mrityunjaybhagat/devops-cicd-platform:1.1'
+                sh 'docker tag devops-cicd-platform:${IMAGE_TAG} mrityunjaybhagat/devops-cicd-platform:${IMAGE_TAG}'
             }
         }
         stage('Docker Push') {
             steps {
-                sh 'docker push mrityunjaybhagat/devops-cicd-platform:1.1'
+                sh 'docker push mrityunjaybhagat/devops-cicd-platform:${IMAGE_TAG}'
             }
         }
 
-
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                helm upgrade --install devops-cicd-platform helm/devops-cicd-platform \
+                  --set image.tag=${IMAGE_TAG}
+                '''
+            }
+        }
         
         
         
