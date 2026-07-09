@@ -217,7 +217,7 @@ devops-cicd-platform/
 
 ### Docker Hub Images
 
-![Docker Hub](docs/images/03-dockerhub-build.png)
+![Docker Hub](docs/images/03-dockerhub-build19.png)
 
 ---
 
@@ -235,7 +235,7 @@ devops-cicd-platform/
 
 ### Application Health Check
 
-![Health Endpoint](docs/images/06-health-endpoint.png)
+![Health Endpoint](docs/images/08-health-endpoint.png)
 
 
 
