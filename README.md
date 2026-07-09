@@ -217,19 +217,19 @@ devops-cicd-platform/
 
 ### Docker Hub Images
 
-![Docker Hub](docs/images/03-dockerhub-image.png)
+![Docker Hub](docs/images/03-dockerhub-build.png)
 
 ---
 
 ### Kubernetes Pods & Services
 
-![Kubernetes Pods and Services](docs/images/04-kubectl-pods-services.png)
+![Kubernetes Pods and Services](docs/images/04-kubectl-get-pods-services.png)
 
 ---
 
 ### Helm Deployment
 
-![Helm Deployment](docs/images/05-helm-list.png)
+![Helm Deployment](docs/images/06-helm-list.png)
 
 ---
 
