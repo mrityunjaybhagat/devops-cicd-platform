@@ -134,15 +134,17 @@ The project follows a complete CI/CD workflow where every code change is automat
 
 ## Repository Structure
 
-devops-cicd-platform/ 
-+-- app/ 
-+-- docker/ 
-+-- docs/ � 
-�  +-- images/ 
-+-- helm/ 
-+-- jenkins/ 
-+-- kubernetes/ 
-+-- README.md
+```text
+devops-cicd-platform/
+|-- app/
+|-- docker/
+|-- docs/
+|   `-- images/
+|-- helm/
+|-- jenkins/
+|-- kubernetes/
+`-- README.md
+```
 
 ## Challenges Faced
 
