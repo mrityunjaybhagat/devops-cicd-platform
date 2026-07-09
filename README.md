@@ -210,7 +210,7 @@ devops-cicd-platform/
 
 ### Jenkins Pipeline
 
-![Jenkins Pipeline](docs/images/02-jenkins-stage-view.png)
+!![GitHub Repository](docs/images/02-jenkins-stage-view.png)
 
 ---
 
